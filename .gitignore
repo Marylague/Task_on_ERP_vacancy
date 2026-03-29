@@ -1,0 +1,17 @@
+__history/
+history/
+recovery/
+__recovery/
+*.local
+*.identcache
+*.tvsconfig
+
+# Build
+Win32/
+Win64/
+Debug/
+Release/
+*.exe
+
+# SQLite
+*.db
