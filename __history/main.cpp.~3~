@@ -1,0 +1,44 @@
+#include <iostream>
+#include <tchar.h>
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+    std::cout << " Wellcome to store program! \n";
+
+    std::string conn =
+        "host=localhost port=5432 dbname=storehouse user=postgres password=root1234";
+
+    Database db(conn);
+
+    if (!db.isConnected()) {
+    	std::cout << "Can not connect to Data Base";
+        return 1;
+    }
+
+    StorehouseService service(db);
+
+    int choice;
+
+    while (true) {
+        std::cout << "Menu (Choose action, type it below)";
+        std::cout << "\n1. Show products\n";
+        std::cout << "\n2. Show products by storehouse\n";
+        std::cout << "3. Add item\n";
+        std::cout << "4. Receive\n";
+        std::cout << "4. Ship\n";
+        std::cout << "5. History\n";
+        std::cout << "0. Exit\n";
+
+        std::cin >> choice;
+
+        switch (choice) {
+            case 1: service.showItems(); break;
+            case 2: service.addItem(); break;
+            case 3: service.receiveItem(); break;
+            case 4: service.shipItem(); break;
+            case 5: service.showHistory(); break;
+            case 0: return 0;
+        }
+    }
+    return 0;
+}

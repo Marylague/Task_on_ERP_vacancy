@@ -1,0 +1,39 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+
+#include "Database.h"
+
+#include <iostream>
+
+Database::Database(const std::string& connStr) {
+    conn = PQconnectdb(connStr.c_str());
+
+    if (PQstatus(conn) != CONNECTION_OK) {
+        std::cout << "Connection failed: " << PQerrorMessage(conn) << std::endl;
+    }
+}
+
+Database::~Database() {
+    PQfinish(conn);
+}
+
+bool Database::isConnected() {
+    return PQstatus(conn) == CONNECTION_OK;
+}
+
+PGresult* Database::execute(const std::string& query) {
+    PGresult* res = PQexec(conn, query.c_str());
+
+    if (PQresultStatus(res) != PGRES_TUPLES_OK &&
+        PQresultStatus(res) != PGRES_COMMAND_OK) {
+        std::cout << "Query error: " << PQerrorMessage(conn) << std::endl;
+    }
+
+    return res;
+}
+
+
+
+#pragma package(smart_init)
+

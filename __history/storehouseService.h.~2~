@@ -1,0 +1,21 @@
+//---------------------------------------------------------------------------
+
+#ifndef storehouseServiceH
+#define storehouseServiceH
+
+#include "../database/Database.h"
+class WarehouseService {
+private:
+    Database& db;
+
+public:
+    WarehouseService(Database& database);
+
+    void showItems();
+    void addItem();
+    void receiveItem();
+    void shipItem();
+    void showHistory();
+};
+
+#endif
