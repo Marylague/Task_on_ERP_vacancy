@@ -13,36 +13,6 @@ int _tmain(int argc, _TCHAR* argv[])
     	std::cout << "Can not connect to Data Base";
         return 1;
     }
-
-//    db.execute(
-//        "CREATE TABLE IF NOT EXISTS storehouses ("
-//        "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-//        "name TEXT UNIQUE,"
-//        "location TEXT);"
-//    );
-//
-//    db.execute(
-//        "CREATE TABLE IF NOT EXISTS products ("
-//        "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-//        "name TEXT,"
-//        "quantity INTEGER DEFAULT 0,"
-//        "price REAL,"
-//        "storehouse_id INTEGER,"
-//        "FOREIGN KEY(storehouse_id) REFERENCES storehouses(id));"
-//    );
-//
-//    db.execute(
-//        "CREATE TABLE IF NOT EXISTS history ("
-//        "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-//        "product_id INTEGER,"
-//        "operation_type TEXT,"
-//        "operation_quantity INTEGER,"
-//        "previous_quantity INTEGER,"
-//        "new_quantity INTEGER,"
-//        "storehouse_id INTEGER,"
-//        "created_at DATETIME DEFAULT CURRENT_TIMESTAMP);"
-//    );
-
     StorehouseService service(db);
 
     int choice;
